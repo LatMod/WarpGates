@@ -1,0 +1,68 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven { url = "http://files.minecraftforge.net/maven" }
+	}
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+	}
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = System.properties['mod_version']
+if (version == null) {
+	version = "Dev"
+}
+group = "com.latmod.warppads"
+archivesBaseName = "WarpPads"
+
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+	sourceCompatibility = targetCompatibility = "1.8"
+}
+
+minecraft {
+	version = "1.12-14.21.0.2322"
+	runDir = "run"
+	mappings = "snapshot_20161220"
+}
+
+repositories {
+	ivy {
+		name "LatMod"
+		artifactPattern "http://mods.latmod.com/[module]/[revision]/[module]-[revision](-[classifier]).[ext]"
+	}
+	maven {
+		url "http://maven.k-4u.nl"
+	}
+}
+
+dependencies {
+	compile 'LatMod:FTBLib:4.0.0:api'
+	deobfCompile "com.github.mcjty:compatlayer:1.11.2-0.2.7"
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main/java'
+		}
+		resources {
+			srcDir 'src/main/resources'
+		}
+	}
+}
+
+processResources {
+	inputs.property "version", project.version
+	inputs.property "mcversion", project.minecraft.version
+
+	from(sourceSets.main.resources.srcDirs) {
+		include 'mcmod.info'
+		expand 'version': project.version, 'mcversion': project.minecraft.version
+	}
+
+	from(sourceSets.main.resources.srcDirs) {
+		exclude 'mcmod.info'
+	}
+}
