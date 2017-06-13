@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 
-@Mod(modid = WarpPads.MOD_ID, name = "Warp Pads", version = "@VERSION@", dependencies = "required-after:ftbl")
+@Mod(modid = WarpPads.MOD_ID, name = "Warp Pads", version = "@VERSION@", acceptedMinecraftVersions = "[1.12,)", dependencies = "required-after:ftbl")
 public class WarpPads
 {
 	public static final String MOD_ID = "warp_pads";

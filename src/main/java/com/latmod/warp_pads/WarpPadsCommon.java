@@ -26,11 +26,8 @@ public class WarpPadsCommon
 
 	public void init()
 	{
-		RecipeUtils.addRecipe(new ItemStack(WarpPadsItems.WARP_PAD, 2),
-				"EDE", "QBQ",
-				'E', ODItems.ENDERPEARL,
-				'B', Blocks.BEACON,
-				'D', ODItems.DIAMOND,
-				'Q', ODItems.QUARTZ_BLOCK);
+		RecipeUtils.addRecipe(WarpPads.MOD_ID + ":warp_pad", new ItemStack(WarpPadsItems.WARP_PAD, 2), 3,
+				ODItems.ENDERPEARL, ODItems.DIAMOND, ODItems.ENDERPEARL,
+				ODItems.QUARTZ_BLOCK, Blocks.BEACON, ODItems.QUARTZ_BLOCK);
 	}
 }

@@ -1,20 +1,17 @@
 [
 	{
-		"modid": "XPT",
-		"name": "XP Teleporters",
+		"modid": "warp_pads",
+		"name": "Warp Pads",
 		"description": "This mod adds XP Teleporters",
 		"version": "${version}",
-		"url": "https://minecraft.curseforge.com/projects/xpteleporters",
+		"mcversion": "1.12",
+		"url": "https://minecraft.curseforge.com/projects/warppads",
 		"updateUrl": "",
-		"authorList": [
-			"LatvianModder"
-		],
+		"authorList": ["LatvianModder"],
 		"credits": "",
-		"logoFile": "assets/xpt/textures/logo.png",
-		"screenshots": [
-		],
+		"logoFile": "assets/warp_pads/textures/logo.png",
+		"screenshots": [],
 		"parent": "",
-		"dependencies": [
-		]
+		"dependencies": []
 	}
 ]
