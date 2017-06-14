@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,7 +45,7 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	@Override
 	public ITextComponent getDisplayName()
 	{
-		return new TextComponentString(getName());
+		return StringUtils.text(getName());
 	}
 
 	public void setName(String n)
