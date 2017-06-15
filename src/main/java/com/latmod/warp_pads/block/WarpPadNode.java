@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 /**
- * Created by LatvianModder on 28.07.2016.
+ * @author LatvianModder
  */
 public class WarpPadNode
 {

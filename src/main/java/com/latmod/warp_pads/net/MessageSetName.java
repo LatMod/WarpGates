@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 /**
- * Created by LatvianModder on 31.07.2016.
+ * @author LatvianModder
  */
 public class MessageSetName extends MessageToServer<MessageSetName>
 {

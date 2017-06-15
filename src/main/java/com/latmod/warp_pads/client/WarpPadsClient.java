@@ -11,7 +11,7 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 /**
- * Created by LatvianModder on 23.01.2017.
+ * @author LatvianModder
  */
 public class WarpPadsClient extends WarpPadsCommon
 {

@@ -3,7 +3,7 @@ package com.latmod.warp_pads;
 import com.feed_the_beast.ftbl.lib.LangKey;
 
 /**
- * Created by LatvianModder on 17.04.2016.
+ * @author LatvianModder
  */
 public class WarpPadsLang
 {

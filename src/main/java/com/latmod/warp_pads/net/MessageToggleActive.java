@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 
 /**
- * Created by LatvianModder on 31.07.2016.
+ * @author LatvianModder
  */
 public class MessageToggleActive extends MessageToServer<MessageToggleActive>
 {

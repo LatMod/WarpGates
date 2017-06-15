@@ -4,7 +4,7 @@ import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
 import com.latmod.warp_pads.WarpPads;
 
 /**
- * Created by LatvianModder on 28.07.2016.
+ * @author LatvianModder
  */
 public class WarpPadsNetHandler
 {

@@ -15,7 +15,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
 /**
- * Created by LatvianModder on 31.07.2016.
+ * @author LatvianModder
  */
 public class MessageSelectTeleporter extends MessageToServer<MessageSelectTeleporter>
 {

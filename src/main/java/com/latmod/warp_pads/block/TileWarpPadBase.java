@@ -5,7 +5,7 @@ import com.feed_the_beast.ftbl.lib.tile.TileBase;
 import com.latmod.warp_pads.item.WarpPadsItems;
 
 /**
- * Created by LatvianModder on 20.02.2017.
+ * @author LatvianModder
  */
 public abstract class TileWarpPadBase extends TileBase
 {

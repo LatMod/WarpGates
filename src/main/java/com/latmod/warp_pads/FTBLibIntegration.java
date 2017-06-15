@@ -7,14 +7,14 @@ import com.feed_the_beast.ftbl.api.events.FTBLibRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-/**
- * Created by LatvianModder on 20.09.2016.
- */
 public enum FTBLibIntegration implements IFTBLibPlugin
 {
 	@FTBLibPlugin
 	INSTANCE;
 
+	/**
+	 * @author LatvianModder
+	 */
 	public static FTBLibAPI API;
 
 	@Override

@@ -7,7 +7,7 @@ import com.latmod.warp_pads.item.WarpPadsItems;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
- * Created by LatvianModder on 23.01.2017.
+ * @author LatvianModder
  */
 public class WarpPadsCommon
 {

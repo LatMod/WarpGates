@@ -15,6 +15,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
+/**
+ * @author LatvianModder
+ */
 public class TileWarpPad extends TileWarpPadBase implements ITickable
 {
 	private UUID owner;

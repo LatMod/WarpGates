@@ -33,6 +33,9 @@ import net.minecraftforge.common.util.FakePlayer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author LatvianModder
+ */
 public class BlockWarpPad extends Block implements IBlockWithItem
 {
 	public static final PropertyEnum<EnumHorizontalOffset> PART = PropertyEnum.create("part", EnumHorizontalOffset.class);

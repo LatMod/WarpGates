@@ -8,7 +8,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import javax.annotation.Nullable;
 
 /**
- * Created by LatvianModder on 19.02.2017.
+ * @author LatvianModder
  */
 public class TileWarpPadPart extends TileWarpPadBase
 {

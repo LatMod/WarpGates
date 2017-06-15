@@ -3,7 +3,7 @@ package com.latmod.warp_pads.item;
 import com.latmod.warp_pads.block.BlockWarpPad;
 
 /**
- * Created by LatvianModder on 23.01.2017.
+ * @author LatvianModder
  */
 public class WarpPadsItems
 {

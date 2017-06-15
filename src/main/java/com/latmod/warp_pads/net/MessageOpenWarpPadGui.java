@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LatvianModder on 28.07.2016.
+ * @author LatvianModder
  */
 public class MessageOpenWarpPadGui extends MessageToClient<MessageOpenWarpPadGui>
 {

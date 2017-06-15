@@ -5,7 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 /**
- * Created by LatvianModder on 19.02.2017.
+ * @author LatvianModder
  */
 public class ItemWarpWhistle extends Item
 {

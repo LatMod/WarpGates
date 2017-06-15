@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LatvianModder on 28.07.2016.
+ * @author LatvianModder
  */
 @SideOnly(Side.CLIENT)
 public class GuiWarpPad extends GuiBase
