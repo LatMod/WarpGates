@@ -1,13 +1,9 @@
 package com.latmod.warp_pads;
 
-import com.feed_the_beast.ftbl.lib.item.ODItems;
 import com.feed_the_beast.ftbl.lib.util.LMUtils;
-import com.feed_the_beast.ftbl.lib.util.RecipeUtils;
 import com.latmod.warp_pads.block.TileWarpPad;
 import com.latmod.warp_pads.block.TileWarpPadPart;
 import com.latmod.warp_pads.item.WarpPadsItems;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -26,8 +22,5 @@ public class WarpPadsCommon
 
 	public void init()
 	{
-		RecipeUtils.addRecipe(WarpPads.MOD_ID + ":warp_pad", new ItemStack(WarpPadsItems.WARP_PAD, 2), 3,
-				ODItems.ENDERPEARL, ODItems.DIAMOND, ODItems.ENDERPEARL,
-				ODItems.QUARTZ_BLOCK, Blocks.BEACON, ODItems.QUARTZ_BLOCK);
 	}
 }
