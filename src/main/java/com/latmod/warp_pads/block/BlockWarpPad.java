@@ -1,6 +1,8 @@
 package com.latmod.warp_pads.block;
 
+import com.feed_the_beast.ftbl.api.game.IBlockWithItem;
 import com.feed_the_beast.ftbl.lib.block.EnumHorizontalOffset;
+import com.feed_the_beast.ftbl.lib.block.ItemBlockBase;
 import com.latmod.warp_pads.WarpPads;
 import com.latmod.warp_pads.net.MessageOpenWarpPadGui;
 import net.minecraft.block.Block;
@@ -16,6 +18,7 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -30,7 +33,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockWarpPad extends Block
+public class BlockWarpPad extends Block implements IBlockWithItem
 {
 	public static final PropertyEnum<EnumHorizontalOffset> PART = PropertyEnum.create("part", EnumHorizontalOffset.class);
 	public static final AxisAlignedBB AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 10D / 16D, 1D);
@@ -44,6 +47,12 @@ public class BlockWarpPad extends Block
 		setHardness(1F);
 		setResistance(10000000F);
 		setCreativeTab(CreativeTabs.TRANSPORTATION);
+	}
+
+	@Override
+	public ItemBlock createItemBlock()
+	{
+		return new ItemBlockBase(this);
 	}
 
 	@Override
