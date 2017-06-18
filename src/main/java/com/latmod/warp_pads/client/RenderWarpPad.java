@@ -23,13 +23,20 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 	@Override
 	public void func_192841_a(TileWarpPad te, double rx, double ry, double rz, float partialTicks, int destroyStage, float p_192841_10_)
 	{
+		double distanceSq = te.getDistanceSq(FTBLibClient.playerX, FTBLibClient.playerY + 1D, FTBLibClient.playerZ);
+		double a = getAlpha(distanceSq);
+
+		if (a <= 0.01D)
+		{
+			return;
+		}
+
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(rx + 0.5D, ry, rz + 0.5D);
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.disableLighting();
 		//render
-
 		String name = te.getName();
 
 		GlStateManager.pushMatrix();
@@ -44,9 +51,8 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 		GlStateManager.scale(-f1, -f1, f1);
 
 		GlStateManager.rotate(0F, 0F, 1F, 0F);
-
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		Minecraft.getMinecraft().fontRendererObj.drawString(name, -(Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) / 2), -8, 0xFFFFFFFF);
+		Minecraft.getMinecraft().fontRendererObj.drawString(name, -(Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
 		GlStateManager.popMatrix();
 
 		GlStateManager.enableCull();
@@ -68,21 +74,18 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 		tessellator.draw();
 	}
 
-	private double getAlpha(double dist)
+	private double getAlpha(double distSq)
 	{
-		if (dist < 2D)
+		if (distSq < 6.1D * 6.1D)
 		{
-			return dist / 2D;
+			return 1D;
 		}
-		double maxDist = 5D;
-		if (dist <= maxDist)
+
+		if (distSq > 7.9D * 7.9D)
 		{
-			return 1F;
+			return 0D;
 		}
-		if (dist > maxDist + 3D)
-		{
-			return 0F;
-		}
-		return (maxDist + 3D - dist) / (maxDist - 3D);
+
+		return MathHelper.clamp(MathUtils.map(MathUtils.sqrt(distSq), 6D, 8D, 1D, 0D), 0D, 1D);
 	}
 }

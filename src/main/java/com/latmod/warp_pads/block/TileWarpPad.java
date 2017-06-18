@@ -101,7 +101,6 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
 	{
-
 		if (owner != null)
 		{
 			nbt.setString("Owner", StringUtils.fromUUID(owner));
@@ -125,10 +124,8 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	}
 
 	@Override
-	public NBTTagCompound getUpdateTag()
+	public void writeUpdateTag(NBTTagCompound nbt)
 	{
-		NBTTagCompound nbt = new NBTTagCompound();
-
 		if (!name.isEmpty())
 		{
 			nbt.setString("N", name);
@@ -138,12 +135,10 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 		{
 			nbt.setBoolean("I", true);
 		}
-
-		return nbt;
 	}
 
 	@Override
-	public void onUpdateTag(NBTTagCompound nbt)
+	public void readUpdateTag(NBTTagCompound nbt)
 	{
 		name = nbt.getString("N");
 		inactive = nbt.getBoolean("I");
@@ -191,6 +186,6 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	@SideOnly(Side.CLIENT)
 	public double getMaxRenderDistanceSquared()
 	{
-		return 64D;
+		return 10000D;
 	}
 }

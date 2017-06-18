@@ -1,7 +1,7 @@
 {
 	"type": "forge:ore_shaped",
 	"result": {
-		"item": "warp_pads:warp_whistle"
+		"item": "warp_whistle"
 	},
 	"pattern": [
 		"  E",
@@ -9,8 +9,8 @@
 		"Q  "
 	],
 	"key": {
-		"E": [{"type": "forge:ore_dict", "ore": "enderpearl"}],
-		"D": [{"type": "forge:ore_dict", "ore": "gemDiamond"}],
-		"Q": [{"type": "forge:ore_dict", "ore": "gemQuartz"}]
+		"E": {"type": "forge:ore_dict", "ore": "enderpearl"},
+		"D": {"type": "forge:ore_dict", "ore": "gemDiamond"},
+		"Q": {"type": "forge:ore_dict", "ore": "gemQuartz"}
 	}
 }

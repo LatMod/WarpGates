@@ -1,7 +1,7 @@
 {
 	"type": "forge:ore_shaped",
 	"result": {
-		"item": "warp_pads:warp_pad",
+		"item": "warp_pad",
 		"count": 2
 	},
 	"pattern": [
@@ -9,9 +9,9 @@
 		"QBQ"
 	],
 	"key": {
-		"E": [{"type": "forge:ore_dict", "ore": "enderpearl"}],
-		"D": [{"type": "forge:ore_dict", "ore": "gemDiamond"}],
-		"Q": [{"type": "forge:ore_dict", "ore": "blockQuartz"}],
-		"B": [{"item": "minecraft:beacon"}]
+		"E": {"type": "forge:ore_dict", "ore": "enderpearl"},
+		"D": {"type": "forge:ore_dict", "ore": "gemDiamond"},
+		"Q": {"type": "forge:ore_dict", "ore": "blockQuartz"},
+		"B": {"item": "minecraft:beacon"}
 	}
 }
