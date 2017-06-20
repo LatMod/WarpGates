@@ -2,6 +2,7 @@ package com.latmod.warp_pads.block;
 
 import com.feed_the_beast.ftbl.lib.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.lib.block.EnumHorizontalOffset;
+import com.feed_the_beast.ftbl.lib.tile.EnumSaveType;
 import com.feed_the_beast.ftbl.lib.util.StringUtils;
 import com.latmod.warp_pads.WarpPadsConfig;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class TileWarpPad extends TileWarpPadBase implements ITickable
 {
 	private UUID owner;
-	public boolean inactive;
+	public boolean active = true;
 	private String name = "";
 	private EnumPrivacyLevel privacyLevel = EnumPrivacyLevel.TEAM;
 
@@ -32,6 +33,40 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	public TileWarpPad(boolean u)
 	{
 		checkUpdates = u;
+	}
+
+	@Override
+	protected void writeData(NBTTagCompound nbt, EnumSaveType type)
+	{
+		if (type.save)
+		{
+			if (owner != null)
+			{
+				nbt.setString("Owner", StringUtils.fromUUID(owner));
+			}
+
+			EnumPrivacyLevel.NAME_MAP.writeToNBT(nbt, "Privacy", type, privacyLevel);
+		}
+
+		nbt.setString("Name", name);
+
+		if (type.save || active)
+		{
+			nbt.setBoolean("Active", active);
+		}
+	}
+
+	@Override
+	protected void readData(NBTTagCompound nbt, EnumSaveType type)
+	{
+		if (type.save)
+		{
+			owner = nbt.hasKey("Owner") ? StringUtils.fromString(nbt.getString("Owner")) : null;
+			privacyLevel = EnumPrivacyLevel.NAME_MAP.readFromNBT(nbt, "Privacy", type);
+		}
+
+		name = nbt.getString("Name");
+		active = nbt.getBoolean("Active");
 	}
 
 	public String getName()
@@ -96,52 +131,6 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	{
 		WarpPadsNet.remove(this);
 		super.invalidate();
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-	{
-		if (owner != null)
-		{
-			nbt.setString("Owner", StringUtils.fromUUID(owner));
-		}
-
-		nbt.setByte("Privacy", (byte) privacyLevel.ordinal());
-		nbt.setString("Name", name);
-		nbt.setBoolean("Inactive", inactive);
-		return super.writeToNBT(nbt);
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt)
-	{
-		super.readFromNBT(nbt);
-
-		owner = nbt.hasKey("Owner") ? StringUtils.fromString(nbt.getString("Owner")) : null;
-		privacyLevel = EnumPrivacyLevel.VALUES[nbt.getByte("Privacy")];
-		name = nbt.getString("Name");
-		inactive = nbt.getBoolean("Inactive");
-	}
-
-	@Override
-	public void writeUpdateTag(NBTTagCompound nbt)
-	{
-		if (!name.isEmpty())
-		{
-			nbt.setString("N", name);
-		}
-
-		if (inactive)
-		{
-			nbt.setBoolean("I", true);
-		}
-	}
-
-	@Override
-	public void readUpdateTag(NBTTagCompound nbt)
-	{
-		name = nbt.getString("N");
-		inactive = nbt.getBoolean("I");
 	}
 
 	@Override

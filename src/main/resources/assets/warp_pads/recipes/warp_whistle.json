@@ -1,8 +1,7 @@
 {
 	"type": "forge:ore_shaped",
-	"result": {
-		"item": "warp_whistle"
-	},
+	"group": "warp_pads:warp_pad",
+	"result": {"item": "warp_whistle"},
 	"pattern": [
 		"  E",
 		" D ",

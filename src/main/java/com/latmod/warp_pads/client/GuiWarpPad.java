@@ -117,7 +117,7 @@ public class GuiWarpPad extends GuiBase
 			@Override
 			public String getTitle(GuiBase gui)
 			{
-				return teleporter.inactive ? GuiLang.LABEL_DISABLED.translate() : GuiLang.LABEL_ENABLED.translate();
+				return (teleporter.active ? GuiLang.LABEL_ENABLED : GuiLang.LABEL_DISABLED).translate();
 			}
 		};
 
@@ -185,6 +185,6 @@ public class GuiWarpPad extends GuiBase
 	public void onClientDataChanged()
 	{
 		buttonPrivacy.setIcon(teleporter.getPrivacyLevel().getIcon());
-		buttonToggle.setIcon(teleporter.inactive ? GuiIcons.ACCEPT_GRAY : GuiIcons.ACCEPT);
+		buttonToggle.setIcon(teleporter.active ? GuiIcons.ACCEPT : GuiIcons.ACCEPT_GRAY);
 	}
 }

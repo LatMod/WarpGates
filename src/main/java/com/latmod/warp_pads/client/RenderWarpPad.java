@@ -4,12 +4,9 @@ import com.feed_the_beast.ftbl.lib.client.FTBLibClient;
 import com.feed_the_beast.ftbl.lib.math.MathUtils;
 import com.latmod.warp_pads.block.TileWarpPad;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -18,10 +15,8 @@ import org.lwjgl.opengl.GL11;
  */
 public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 {
-	private static long debugTimer = 0L;
-
 	@Override
-	public void func_192841_a(TileWarpPad te, double rx, double ry, double rz, float partialTicks, int destroyStage, float p_192841_10_)
+	public void render(TileWarpPad te, double rx, double ry, double rz, float partialTicks, int destroyStage, float alpha)
 	{
 		double distanceSq = te.getDistanceSq(FTBLibClient.playerX, FTBLibClient.playerY + 1D, FTBLibClient.playerZ);
 		double a = getAlpha(distanceSq);
@@ -52,7 +47,7 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 
 		GlStateManager.rotate(0F, 0F, 1F, 0F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		Minecraft.getMinecraft().fontRendererObj.drawString(name, -(Minecraft.getMinecraft().fontRendererObj.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
+		Minecraft.getMinecraft().fontRenderer.drawString(name, -(Minecraft.getMinecraft().fontRenderer.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
 		GlStateManager.popMatrix();
 
 		GlStateManager.enableCull();
@@ -60,18 +55,6 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		GlStateManager.disableBlend();
-	}
-
-	private void drawRect(double x, double y, double w, double h, double z)
-	{
-		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder buffer = tessellator.getBuffer();
-		buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
-		buffer.pos(x, y, z).endVertex();
-		buffer.pos(x + w, y, z).endVertex();
-		buffer.pos(x + w, y + h, z).endVertex();
-		buffer.pos(x, y + h, z).endVertex();
-		tessellator.draw();
 	}
 
 	private double getAlpha(double distSq)

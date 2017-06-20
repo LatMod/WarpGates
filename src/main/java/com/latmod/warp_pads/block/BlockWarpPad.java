@@ -165,7 +165,7 @@ public class BlockWarpPad extends Block implements IBlockWithItem
 						n.pos = teleporter1.getDimPos();
 						n.name = teleporter1.getName();
 						n.energy = teleporter.getEnergyRequired(teleporter1);
-						n.available = !teleporter1.inactive && teleporter.consumeEnergy(playerIn, n.energy, true);
+						n.available = teleporter1.active && teleporter.consumeEnergy(playerIn, n.energy, true);
 						teleporters.add(n);
 					}
 				}

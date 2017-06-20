@@ -54,7 +54,7 @@ public class MessageToggleActive extends MessageToServer<MessageToggleActive>
 
 			if (teleporter.isOwner(player.getGameProfile().getId()))
 			{
-				teleporter.inactive = !teleporter.inactive;
+				teleporter.active = !teleporter.active;
 				teleporter.markDirty();
 			}
 		}

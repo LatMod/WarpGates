@@ -1,9 +1,7 @@
 {
 	"type": "forge:ore_shaped",
-	"result": {
-		"item": "warp_pad",
-		"count": 2
-	},
+	"group": "warp_pads:warp_pad",
+	"result": {"item": "warp_pad", "count": 2},
 	"pattern": [
 		"EDE",
 		"QBQ"
