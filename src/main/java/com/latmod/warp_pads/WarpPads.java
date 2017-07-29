@@ -4,7 +4,6 @@ import com.latmod.warp_pads.block.WarpPadsNet;
 import com.latmod.warp_pads.net.WarpPadsNetHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 
@@ -14,7 +13,7 @@ public class WarpPads
 	public static final String MOD_ID = "warp_pads";
 
 	@Mod.Instance(WarpPads.MOD_ID)
-	public static WarpPads inst;
+	public static WarpPads INST;
 
 	@SidedProxy(serverSide = "com.latmod.warp_pads.WarpPadsCommon", clientSide = "com.latmod.warp_pads.client.WarpPadsClient")
 	public static WarpPadsCommon PROXY;
@@ -23,13 +22,6 @@ public class WarpPads
 	public void onPreInit(FMLPreInitializationEvent event)
 	{
 		WarpPadsNetHandler.init();
-		PROXY.preInit();
-	}
-
-	@Mod.EventHandler
-	public void onInit(FMLInitializationEvent event)
-	{
-		PROXY.init();
 	}
 
 	@Mod.EventHandler

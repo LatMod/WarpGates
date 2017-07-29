@@ -1,9 +1,8 @@
 package com.latmod.warp_pads.block;
 
-import com.feed_the_beast.ftbl.api.game.IBlockWithItem;
 import com.feed_the_beast.ftbl.lib.block.EnumHorizontalOffset;
-import com.feed_the_beast.ftbl.lib.block.ItemBlockBase;
 import com.latmod.warp_pads.WarpPads;
+import com.latmod.warp_pads.item.WarpPadsItems;
 import com.latmod.warp_pads.net.MessageOpenWarpPadGui;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -18,7 +17,6 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -36,7 +34,7 @@ import java.util.List;
 /**
  * @author LatvianModder
  */
-public class BlockWarpPad extends Block implements IBlockWithItem
+public class BlockWarpPad extends Block
 {
 	public static final PropertyEnum<EnumHorizontalOffset> PART = PropertyEnum.create("part", EnumHorizontalOffset.class);
 	public static final AxisAlignedBB AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 10D / 16D, 1D);
@@ -50,12 +48,6 @@ public class BlockWarpPad extends Block implements IBlockWithItem
 		setHardness(1F);
 		setResistance(10000000F);
 		setCreativeTab(CreativeTabs.TRANSPORTATION);
-	}
-
-	@Override
-	public ItemBlock createItemBlock()
-	{
-		return new ItemBlockBase(this);
 	}
 
 	@Override
@@ -228,11 +220,11 @@ public class BlockWarpPad extends Block implements IBlockWithItem
 		}
 	}
 
-	public boolean canExist(IBlockAccess world, BlockPos pos)
+	public static boolean canExist(IBlockAccess world, BlockPos pos)
 	{
 		IBlockState state = world.getBlockState(pos);
 
-		if (state.getBlock() != this)
+		if (state.getBlock() != WarpPadsItems.WARP_PAD)
 		{
 			return false;
 		}
@@ -243,7 +235,7 @@ public class BlockWarpPad extends Block implements IBlockWithItem
 		{
 			state = world.getBlockState(v.offset(center));
 
-			if (state.getBlock() != this || state.getValue(PART) != v)
+			if (state.getBlock() != WarpPadsItems.WARP_PAD || state.getValue(PART) != v)
 			{
 				return false;
 			}

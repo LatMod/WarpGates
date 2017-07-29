@@ -1,9 +1,9 @@
 package com.latmod.warp_pads.block;
 
+import com.feed_the_beast.ftbl.api.FTBLibAPI;
 import com.feed_the_beast.ftbl.api.IForgePlayer;
 import com.feed_the_beast.ftbl.api.IUniverse;
 import com.feed_the_beast.ftbl.lib.math.BlockDimPos;
-import com.latmod.warp_pads.FTBLibIntegration;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import javax.annotation.Nullable;
@@ -52,7 +52,7 @@ public class WarpPadsNet
 
 	public static Collection<TileWarpPad> getTeleporters(EntityPlayerMP player)
 	{
-		IUniverse world = FTBLibIntegration.API.getUniverse();
+		IUniverse world = FTBLibAPI.API.getUniverse();
 
 		IForgePlayer p = world.getPlayer(player);
 		List<TileWarpPad> list = new ArrayList<>();

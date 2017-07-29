@@ -3,7 +3,6 @@ package com.latmod.warp_pads.client;
 import com.feed_the_beast.ftbl.lib.client.FTBLibClient;
 import com.feed_the_beast.ftbl.lib.math.MathUtils;
 import com.latmod.warp_pads.block.TileWarpPad;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -47,7 +46,7 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 
 		GlStateManager.rotate(0F, 0F, 1F, 0F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		Minecraft.getMinecraft().fontRenderer.drawString(name, -(Minecraft.getMinecraft().fontRenderer.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
+		FTBLibClient.MC.fontRenderer.drawString(name, -(FTBLibClient.MC.fontRenderer.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
 		GlStateManager.popMatrix();
 
 		GlStateManager.enableCull();
