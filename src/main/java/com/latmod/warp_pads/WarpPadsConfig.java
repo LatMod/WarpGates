@@ -3,7 +3,7 @@ package com.latmod.warp_pads;
 import com.feed_the_beast.ftbl.api.IFTBLibRegistry;
 import com.feed_the_beast.ftbl.lib.config.PropertyDouble;
 import com.feed_the_beast.ftbl.lib.config.PropertyInt;
-import com.feed_the_beast.ftbl.lib.util.LMUtils;
+import com.feed_the_beast.ftbl.lib.util.CommonUtils;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ public class WarpPadsConfig // WarpPads
 
 	public static void init(IFTBLibRegistry reg)
 	{
-		reg.addConfigFileProvider(WarpPads.MOD_ID, () -> new File(LMUtils.folderConfig, "WarpPads.json"));
+		reg.addConfigFileProvider(WarpPads.MOD_ID, () -> new File(CommonUtils.folderConfig, "WarpPads.json"));
 
 		reg.addConfig(WarpPads.MOD_ID, "general.levels_per_block", LEVELS_PER_BLOCK);
 		reg.addConfig(WarpPads.MOD_ID, "general.levels_for_crossdim", LEVELS_FOR_CROSSDIM);

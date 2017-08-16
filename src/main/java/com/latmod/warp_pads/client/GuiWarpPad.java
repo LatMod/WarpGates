@@ -181,8 +181,7 @@ public class GuiWarpPad extends GuiBase
 		return BACKGROUND;
 	}
 
-	@Override
-	public void onClientDataChanged()
+	public void updateData()
 	{
 		buttonPrivacy.setIcon(teleporter.getPrivacyLevel().getIcon());
 		buttonToggle.setIcon(teleporter.active ? GuiIcons.ACCEPT : GuiIcons.ACCEPT_GRAY);

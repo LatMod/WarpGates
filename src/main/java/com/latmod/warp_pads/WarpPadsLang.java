@@ -7,5 +7,5 @@ import com.feed_the_beast.ftbl.lib.LangKey;
  */
 public class WarpPadsLang
 {
-	public static final LangKey NEED_XP_LEVEL_TP = new LangKey("warp_pads.lang.need_xp_level_tp");
+	public static final LangKey NEED_XP_LEVEL_TP = LangKey.of("warp_pads.lang.need_xp_level_tp");
 }

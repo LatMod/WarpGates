@@ -1,6 +1,6 @@
 package com.latmod.warp_pads.client;
 
-import com.feed_the_beast.ftbl.lib.client.FTBLibClient;
+import com.feed_the_beast.ftbl.lib.client.ClientUtils;
 import com.feed_the_beast.ftbl.lib.math.MathUtils;
 import com.latmod.warp_pads.block.TileWarpPad;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +17,7 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 	@Override
 	public void render(TileWarpPad te, double rx, double ry, double rz, float partialTicks, int destroyStage, float alpha)
 	{
-		double distanceSq = te.getDistanceSq(FTBLibClient.playerX, FTBLibClient.playerY + 1D, FTBLibClient.playerZ);
+		double distanceSq = te.getDistanceSq(ClientUtils.playerX, ClientUtils.playerY + 1D, ClientUtils.playerZ);
 		double a = getAlpha(distanceSq);
 
 		if (a <= 0.01D)
@@ -40,13 +40,13 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 		float f1 = 0.02F;
 		GlStateManager.translate(0D, 1.5D, 0D);
 
-		double rot = -MathHelper.atan2((te.getPos().getZ() + 0.5F) - FTBLibClient.playerZ, (te.getPos().getX() + 0.5F) - FTBLibClient.playerX) * MathUtils.DEG + 90D;
+		double rot = -MathHelper.atan2((te.getPos().getZ() + 0.5F) - ClientUtils.playerZ, (te.getPos().getX() + 0.5F) - ClientUtils.playerX) * MathUtils.DEG + 90D;
 		GlStateManager.rotate((float) rot, 0F, 1F, 0F);
 		GlStateManager.scale(-f1, -f1, f1);
 
 		GlStateManager.rotate(0F, 0F, 1F, 0F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		FTBLibClient.MC.fontRenderer.drawString(name, -(FTBLibClient.MC.fontRenderer.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
+		ClientUtils.MC.fontRenderer.drawString(name, -(ClientUtils.MC.fontRenderer.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
 		GlStateManager.popMatrix();
 
 		GlStateManager.enableCull();
