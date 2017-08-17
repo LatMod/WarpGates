@@ -1,18 +1,17 @@
 package com.latmod.warp_pads.item;
 
+import com.feed_the_beast.ftbl.lib.item.ItemBase;
 import com.latmod.warp_pads.WarpPads;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 
 /**
  * @author LatvianModder
  */
-public class ItemWarpWhistle extends Item
+public class ItemWarpWhistle extends ItemBase
 {
 	public ItemWarpWhistle()
 	{
-		setRegistryName(WarpPads.MOD_ID + ":warp_whistle");
-		setUnlocalizedName(WarpPads.MOD_ID + ".warp_whistle");
+		super(WarpPads.MOD_ID, "warp_whistle");
 		setMaxStackSize(1);
 		setCreativeTab(CreativeTabs.TRANSPORTATION);
 	}
