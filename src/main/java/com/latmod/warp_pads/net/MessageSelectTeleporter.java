@@ -9,6 +9,7 @@ import com.latmod.warp_pads.block.TileWarpPad;
 import com.latmod.warp_pads.block.WarpPadsNet;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
@@ -69,7 +70,7 @@ public class MessageSelectTeleporter extends MessageToServer<MessageSelectTelepo
 				if (teleporter0.consumeEnergy(player, levels, true))
 				{
 					teleporter0.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1F, 1F);
-					ServerUtils.teleportPlayer(player, teleporter.getDimPos());
+					ServerUtils.teleportPlayer((EntityPlayerMP) player, teleporter.getDimPos());
 					teleporter0.consumeEnergy(player, levels, false);
 					teleporter.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1F, 1F);
 				}

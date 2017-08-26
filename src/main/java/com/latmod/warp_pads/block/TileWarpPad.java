@@ -70,9 +70,16 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 		active = nbt.getBoolean("Active");
 	}
 
+	@Override
 	public String getName()
 	{
 		return name.isEmpty() ? "Unnamed" : name;
+	}
+
+	@Override
+	public boolean hasCustomName()
+	{
+		return !name.isEmpty();
 	}
 
 	@Override
