@@ -5,7 +5,7 @@ import com.feed_the_beast.ftbl.lib.net.MessageToServer;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
 import com.feed_the_beast.ftbl.lib.util.NetUtils;
 import com.feed_the_beast.ftbl.lib.util.ServerUtils;
-import com.latmod.warp_pads.block.TileWarpPad;
+import com.latmod.warp_pads.block.TilePortal;
 import com.latmod.warp_pads.block.WarpPadsNet;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,10 +58,10 @@ public class MessageSelectTeleporter extends MessageToServer<MessageSelectTelepo
 	{
 		TileEntity te = player.world.getTileEntity(m.pos);
 
-		if (te instanceof TileWarpPad)
+		if (te instanceof TilePortal)
 		{
-			TileWarpPad teleporter0 = (TileWarpPad) te;
-			TileWarpPad teleporter = WarpPadsNet.get(m.dst);
+			TilePortal teleporter0 = (TilePortal) te;
+			TilePortal teleporter = WarpPadsNet.get(m.dst);
 
 			if (teleporter != null)
 			{

@@ -1,12 +1,13 @@
 package com.latmod.warp_pads.block;
 
 import com.feed_the_beast.ftbl.lib.EnumPrivacyLevel;
-import com.feed_the_beast.ftbl.lib.block.EnumHorizontalOffset;
 import com.feed_the_beast.ftbl.lib.tile.EnumSaveType;
+import com.feed_the_beast.ftbl.lib.tile.TileBase;
 import com.feed_the_beast.ftbl.lib.util.StringUtils;
 import com.latmod.warp_pads.WarpPadsConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
@@ -20,20 +21,23 @@ import java.util.UUID;
 /**
  * @author LatvianModder
  */
-public class TileWarpPad extends TileWarpPadBase implements ITickable
+public class TilePortal extends TileBase implements ITickable
 {
+	public EnumFacing facing;
 	private UUID owner;
 	public boolean active = true;
 	private String name = "";
 	private EnumPrivacyLevel privacyLevel = EnumPrivacyLevel.TEAM;
+	public int tick;
 
-	public TileWarpPad()
+	public TilePortal()
 	{
+		facing = EnumFacing.DOWN;
 	}
 
-	public TileWarpPad(boolean u)
+	public TilePortal(EnumFacing f)
 	{
-		checkUpdates = u;
+		facing = f;
 	}
 
 	@Override
@@ -55,6 +59,8 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 		{
 			nbt.setBoolean("Active", active);
 		}
+
+		nbt.setString("Facing", facing.getName());
 	}
 
 	@Override
@@ -68,6 +74,7 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 
 		name = nbt.getString("Name");
 		active = nbt.getBoolean("Active");
+		facing = EnumFacing.byName(nbt.getString("Facing"));
 	}
 
 	@Override
@@ -80,12 +87,6 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	public boolean hasCustomName()
 	{
 		return !name.isEmpty();
-	}
-
-	@Override
-	public EnumHorizontalOffset getPart()
-	{
-		return EnumHorizontalOffset.CENTER;
 	}
 
 	@Override
@@ -144,10 +145,16 @@ public class TileWarpPad extends TileWarpPadBase implements ITickable
 	@Override
 	public void update()
 	{
+		if (!world.isRemote && tick % 20 == 19 && !BlockPortal.canExist(facing, world, pos))
+		{
+			world.setBlockToAir(pos);
+		}
+
 		checkIfDirty();
+		tick++;
 	}
 
-	public int getEnergyRequired(TileWarpPad teleporter)
+	public int getEnergyRequired(TilePortal teleporter)
 	{
 		if (teleporter.world.provider.getDimension() == world.provider.getDimension())
 		{

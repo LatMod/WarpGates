@@ -13,7 +13,7 @@ import com.feed_the_beast.ftbl.lib.gui.GuiLang;
 import com.feed_the_beast.ftbl.lib.gui.Slider;
 import com.feed_the_beast.ftbl.lib.gui.TextBox;
 import com.latmod.warp_pads.WarpPads;
-import com.latmod.warp_pads.block.TileWarpPad;
+import com.latmod.warp_pads.block.TilePortal;
 import com.latmod.warp_pads.block.WarpPadNode;
 import com.latmod.warp_pads.net.MessageSelectTeleporter;
 import com.latmod.warp_pads.net.MessageSetName;
@@ -78,13 +78,13 @@ public class GuiWarpPad extends GuiBase
 		}
 	}
 
-	private final TileWarpPad teleporter;
+	private final TilePortal teleporter;
 	private final Button buttonPrivacy, buttonToggle;
 	private final List<ButtonXPT> buttons;
 	private final Slider slider;
 	private final TextBox textBox;
 
-	public GuiWarpPad(TileWarpPad te, List<WarpPadNode> t)
+	public GuiWarpPad(TilePortal te, List<WarpPadNode> t)
 	{
 		super(126, 110);
 		teleporter = te;

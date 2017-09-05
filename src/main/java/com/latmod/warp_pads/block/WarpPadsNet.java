@@ -20,8 +20,8 @@ import java.util.Map;
  */
 public class WarpPadsNet
 {
-	private static final Map<BlockDimPos, TileWarpPad> NET = new HashMap<>();
-	private static final Comparator<TileWarpPad> COMPARATOR = (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName());
+	private static final Map<BlockDimPos, TilePortal> NET = new HashMap<>();
+	private static final Comparator<TilePortal> COMPARATOR = (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName());
 
 	public static void clear()
 	{
@@ -29,12 +29,12 @@ public class WarpPadsNet
 	}
 
 	@Nullable
-	public static TileWarpPad get(BlockDimPos pos)
+	public static TilePortal get(BlockDimPos pos)
 	{
 		return NET.get(pos);
 	}
 
-	public static void add(TileWarpPad teleporter)
+	public static void add(TilePortal teleporter)
 	{
 		if (teleporter.getOwner() != null && teleporter.hasWorld() && teleporter.isServerSide())
 		{
@@ -42,7 +42,7 @@ public class WarpPadsNet
 		}
 	}
 
-	public static void remove(TileWarpPad teleporter)
+	public static void remove(TilePortal teleporter)
 	{
 		if (teleporter.hasWorld() && teleporter.isServerSide())
 		{
@@ -50,19 +50,19 @@ public class WarpPadsNet
 		}
 	}
 
-	public static Collection<TileWarpPad> getTeleporters(EntityPlayerMP player)
+	public static Collection<TilePortal> getTeleporters(EntityPlayerMP player)
 	{
 		IUniverse world = FTBLibAPI.API.getUniverse();
 
 		IForgePlayer p = world.getPlayer(player);
-		List<TileWarpPad> list = new ArrayList<>();
+		List<TilePortal> list = new ArrayList<>();
 
 		if (p == null || NET.isEmpty())
 		{
 			return list;
 		}
 
-		for (TileWarpPad tile : NET.values())
+		for (TilePortal tile : NET.values())
 		{
 			if (tile.getOwner() != null && tile.hasWorld() && !tile.isInvalid())
 			{

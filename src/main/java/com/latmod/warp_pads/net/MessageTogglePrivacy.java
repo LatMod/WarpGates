@@ -3,7 +3,7 @@ package com.latmod.warp_pads.net;
 import com.feed_the_beast.ftbl.lib.net.MessageToServer;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
 import com.feed_the_beast.ftbl.lib.util.NetUtils;
-import com.latmod.warp_pads.block.TileWarpPad;
+import com.latmod.warp_pads.block.TilePortal;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -52,9 +52,9 @@ public class MessageTogglePrivacy extends MessageToServer<MessageTogglePrivacy>
 	{
 		TileEntity te = player.world.getTileEntity(m.pos);
 
-		if (te instanceof TileWarpPad)
+		if (te instanceof TilePortal)
 		{
-			TileWarpPad teleporter = (TileWarpPad) te;
+			TilePortal teleporter = (TilePortal) te;
 
 			if (teleporter.isOwner(player.getGameProfile().getId()))
 			{

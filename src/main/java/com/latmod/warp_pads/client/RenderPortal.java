@@ -2,7 +2,7 @@ package com.latmod.warp_pads.client;
 
 import com.feed_the_beast.ftbl.lib.client.ClientUtils;
 import com.feed_the_beast.ftbl.lib.math.MathUtils;
-import com.latmod.warp_pads.block.TileWarpPad;
+import com.latmod.warp_pads.block.TilePortal;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -12,10 +12,10 @@ import org.lwjgl.opengl.GL11;
 /**
  * @author LatvianModder
  */
-public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
+public class RenderPortal extends TileEntitySpecialRenderer<TilePortal>
 {
 	@Override
-	public void render(TileWarpPad te, double rx, double ry, double rz, float partialTicks, int destroyStage, float alpha)
+	public void render(TilePortal te, double rx, double ry, double rz, float partialTicks, int destroyStage, float alpha)
 	{
 		double distanceSq = te.getDistanceSq(ClientUtils.playerX, ClientUtils.playerY + 1D, ClientUtils.playerZ);
 		double a = getAlpha(distanceSq);
@@ -26,7 +26,7 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 		}
 
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(rx + 0.5D, ry, rz + 0.5D);
+		GlStateManager.translate(rx + 0.5D, ry + 0.5D, rz + 0.5D);
 		GlStateManager.disableCull();
 		GlStateManager.enableBlend();
 		GlStateManager.disableLighting();
@@ -38,7 +38,6 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 		//GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
 		GlStateManager.enableTexture2D();
 		float f1 = 0.02F;
-		GlStateManager.translate(0D, 1.5D, 0D);
 
 		double rot = -MathHelper.atan2((te.getPos().getZ() + 0.5F) - ClientUtils.playerZ, (te.getPos().getX() + 0.5F) - ClientUtils.playerX) * MathUtils.DEG + 90D;
 		GlStateManager.rotate((float) rot, 0F, 1F, 0F);
@@ -46,7 +45,11 @@ public class RenderWarpPad extends TileEntitySpecialRenderer<TileWarpPad>
 
 		GlStateManager.rotate(0F, 0F, 1F, 0F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
+		GlStateManager.disableDepth();
+		GlStateManager.depthMask(false);
 		ClientUtils.MC.fontRenderer.drawString(name, -(ClientUtils.MC.fontRenderer.getStringWidth(name) / 2), -8, 0xFFFFFF | ((int) (a * 255D)) << 24);
+		GlStateManager.enableDepth();
+		GlStateManager.depthMask(true);
 		GlStateManager.popMatrix();
 
 		GlStateManager.enableCull();

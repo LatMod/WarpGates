@@ -3,7 +3,7 @@ package com.latmod.warp_pads.net;
 import com.feed_the_beast.ftbl.lib.net.MessageToClient;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
 import com.feed_the_beast.ftbl.lib.util.NetUtils;
-import com.latmod.warp_pads.block.TileWarpPad;
+import com.latmod.warp_pads.block.TilePortal;
 import com.latmod.warp_pads.block.WarpPadNode;
 import com.latmod.warp_pads.client.GuiWarpPad;
 import io.netty.buffer.ByteBuf;
@@ -70,9 +70,9 @@ public class MessageOpenWarpPadGui extends MessageToClient<MessageOpenWarpPadGui
 	{
 		TileEntity te = player.getEntityWorld().getTileEntity(m.pos);
 
-		if (te instanceof TileWarpPad)
+		if (te instanceof TilePortal)
 		{
-			new GuiWarpPad((TileWarpPad) te, m.nodes).openGui();
+			new GuiWarpPad((TilePortal) te, m.nodes).openGui();
 		}
 	}
 }

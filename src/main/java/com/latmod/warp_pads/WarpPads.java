@@ -21,6 +21,7 @@ public class WarpPads
 	@Mod.EventHandler
 	public void onPreInit(FMLPreInitializationEvent event)
 	{
+		WarpPadsConfig.sync();
 		WarpPadsNetHandler.init();
 	}
 
