@@ -25,6 +25,7 @@ public class TilePortal extends TileBase implements ITickable
 {
 	public EnumFacing facing;
 	private UUID owner;
+	private UUID uuid;
 	public boolean active = true;
 	private String name = "";
 	private EnumPrivacyLevel privacyLevel = EnumPrivacyLevel.TEAM;
@@ -38,6 +39,16 @@ public class TilePortal extends TileBase implements ITickable
 	public TilePortal(EnumFacing f)
 	{
 		facing = f;
+	}
+
+	public UUID getUUID()
+	{
+		if (uuid == null)
+		{
+			uuid = UUID.randomUUID();
+		}
+
+		return uuid;
 	}
 
 	@Override
@@ -61,6 +72,7 @@ public class TilePortal extends TileBase implements ITickable
 		}
 
 		nbt.setString("Facing", facing.getName());
+		nbt.setUniqueId("UUID", getUUID());
 	}
 
 	@Override
@@ -75,6 +87,12 @@ public class TilePortal extends TileBase implements ITickable
 		name = nbt.getString("Name");
 		active = nbt.getBoolean("Active");
 		facing = EnumFacing.byName(nbt.getString("Facing"));
+		uuid = nbt.getUniqueId("UUID");
+
+		if (uuid != null && uuid.getLeastSignificantBits() == 0L && uuid.getMostSignificantBits() == 0L)
+		{
+			uuid = null;
+		}
 	}
 
 	@Override
