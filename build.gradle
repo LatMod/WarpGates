@@ -13,8 +13,8 @@ version = System.properties['mod_version']
 if (version == null) {
 	version = "Dev"
 }
-group = "com.latmod.warppads"
-archivesBaseName = "WarpPads"
+group = "com.latmod.warp_gates"
+archivesBaseName = "WarpGates"
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
@@ -22,9 +22,9 @@ compileJava {
 }
 
 minecraft {
-	version = "1.12.1-14.22.0.2461"
+	version = "1.12.1-14.22.0.2474"
 	runDir = "run"
-	mappings = "snapshot_20170824"
+	mappings = "snapshot_20170908"
 }
 
 repositories {

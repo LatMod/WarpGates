@@ -1,0 +1,3 @@
+warp_gates.config.levels=Levels
+warp_gates.config.levels.per_block=Levels per Block
+warp_gates.config.levels.crossdim=Levels for Cross-dim

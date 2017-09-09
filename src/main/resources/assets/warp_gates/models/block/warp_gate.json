@@ -1,0 +1,8 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"top": "blocks/obsidian",
+		"front": "blocks/portal",
+		"side": "blocks/obsidian"
+	}
+}
