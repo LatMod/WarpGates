@@ -17,10 +17,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -116,6 +118,42 @@ public class BlockWarpGate extends BlockBase
 		}
 
 		return state;
+	}
+
+	@Override
+	@Deprecated
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		TileEntity tileEntity = world.getTileEntity(pos);
+
+		if (tileEntity instanceof TileWarpGate && ((TileWarpGate) tileEntity).hasPortal())
+		{
+			BlockPos pos1 = pos.add(0, 4, 0);
+			IBlockState state1 = world.getBlockState(pos1);
+			return state1.getBlock().getBoundingBox(state1, world, pos1);
+		}
+
+		return FULL_BLOCK_AABB;
+	}
+
+	@Override
+	@Deprecated
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	@Deprecated
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	public BlockRenderLayer getBlockLayer()
+	{
+		return BlockRenderLayer.CUTOUT;
 	}
 
 	@Override

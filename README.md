@@ -1,1 +1,1 @@
-# Warp Pads
+# Warp Gates [![](http://cf.way2muchnoise.eu/warp-gates.svg)](https://minecraft.curseforge.com/projects/warp-gates) [![](http://cf.way2muchnoise.eu/versions/warp-gates.svg)](https://minecraft.curseforge.com/projects/warp-gates)

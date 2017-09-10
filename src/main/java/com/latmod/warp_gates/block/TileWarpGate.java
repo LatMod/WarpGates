@@ -68,6 +68,8 @@ public class TileWarpGate extends TileBase implements ITickable
 
 		nbt.setUniqueId("UUID", getUUID());
 		nbt.setInteger("Tick", tick);
+		MathUtils.FACING_MAP.writeToNBT(nbt, "Facing", type, getFacing());
+		nbt.setBoolean("HasPortal", aabb != null);
 	}
 
 	@Override
@@ -85,6 +87,8 @@ public class TileWarpGate extends TileBase implements ITickable
 		}
 
 		tick = nbt.getInteger("Tick");
+		facing = MathUtils.FACING_MAP.readFromNBT(nbt, "Facing", type);
+		aabb = nbt.getBoolean("HasPortal") ? (getFacing().getAxis() == EnumFacing.Axis.X) ? AABB_X.offset(pos) : AABB_Z.offset(pos) : null;
 	}
 
 	@Override
@@ -185,25 +189,39 @@ public class TileWarpGate extends TileBase implements ITickable
 		{
 			if (axis == EnumFacing.Axis.X)
 			{
-				if (world.getBlockState(pos.add(0, 1 + i, -2)).getBlock() != top)
+				if (world.isAirBlock(pos.add(0, i + 1, -2)) || world.isAirBlock(pos.add(0, i + 1, 2)))
 				{
 					return false;
 				}
-				else if (world.getBlockState(pos.add(0, 1 + i, 2)).getBlock() != top)
+				else if (i != 1 && (world.isAirBlock(pos.add(0, 0, i - 1)) || world.isAirBlock(pos.add(0, 4, i - 1))))
 				{
 					return false;
 				}
-				//FIXME: top & bottom blocks
+				for (int j = 0; j < 3; j++)
+				{
+					BlockPos pos1 = pos.add(0, i + 1, j - 1);
+					if (!world.getBlockState(pos1).getBlock().isReplaceable(world, pos1))
+					{
+						return false;
+					}
+				}
 			}
-			else if (world.getBlockState(pos.add(-2, 1 + i, 0)).getBlock() != top)
+			else if (world.isAirBlock(pos.add(-2, i + 1, 0)) || world.isAirBlock(pos.add(2, i + 1, 0)))
 			{
 				return false;
 			}
-			else if (world.getBlockState(pos.add(2, 1 + i, 0)).getBlock() != top)
+			else if (i != 1 && (world.isAirBlock(pos.add(i - 1, 0, 0)) || world.isAirBlock(pos.add(i - 1, 4, 0))))
 			{
 				return false;
 			}
-			//FIXME: top & bottom blocks
+			for (int j = 0; j < 3; j++)
+			{
+				BlockPos pos1 = pos.add(j - 1, i + 1, 0);
+				if (!world.getBlockState(pos1).getBlock().isReplaceable(world, pos1))
+				{
+					return false;
+				}
+			}
 		}
 
 		return true;
@@ -212,7 +230,7 @@ public class TileWarpGate extends TileBase implements ITickable
 	@Override
 	public void update()
 	{
-		if (tick % 20 == 19)
+		if (tick % 5 == 0)
 		{
 			boolean hasPortal = aabb != null;
 			boolean prevHasPortal = hasPortal;
@@ -235,13 +253,16 @@ public class TileWarpGate extends TileBase implements ITickable
 
 		if (aabb != null && world.isRemote)
 		{
-			for (int i = 0; i < 10; i++)
+			double offsetX = getFacing().getFrontOffsetX() * 0.3D;
+			double offsetZ = getFacing().getFrontOffsetZ() * 0.3D;
+
+			for (int i = 0; i < 20; i++)
 			{
 				double x = MathUtils.map(MathUtils.RAND.nextDouble(), 0D, 1D, aabb.minX, aabb.maxX);
-				double y = MathUtils.map(MathUtils.RAND.nextDouble(), 0D, 1D, aabb.minY + 1D, aabb.maxY + 0.7D) - 1D;
+				double y = MathUtils.map(MathUtils.RAND.nextDouble(), 0D, 1D, aabb.minY + 0.5D, aabb.maxY + 1.2D) - 1D;
 				double z = MathUtils.map(MathUtils.RAND.nextDouble(), 0D, 1D, aabb.minZ, aabb.maxZ);
 
-				world.spawnParticle(EnumParticleTypes.PORTAL, x, y, z, 0D, 0D, 0D);
+				world.spawnParticle(EnumParticleTypes.PORTAL, x - offsetX, y, z - offsetZ, offsetX, 0D, offsetZ);
 			}
 		}
 
