@@ -122,7 +122,7 @@ public class GuiWarpGate extends GuiBase
 			@Override
 			public String getTitle(GuiBase gui)
 			{
-				return (teleporter.active ? GuiLang.LABEL_ENABLED : GuiLang.LABEL_DISABLED).translate();
+				return (teleporter.active ? GuiLang.ENABLED : GuiLang.DISABLED).translate();
 			}
 
 			@Override

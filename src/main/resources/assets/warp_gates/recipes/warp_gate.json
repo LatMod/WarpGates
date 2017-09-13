@@ -1,16 +1,15 @@
 {
 	"type": "forge:ore_shaped",
 	"group": "warp_pads:portal",
-	"result": {"item": "portal", "count": 4},
+	"result": {"item": "warp_gate", "count": 4},
 	"pattern": [
-		"ODO",
-		"ENE",
-		"ODO"
+		"DDE",
+		"DBE",
+		"DDE"
 	],
 	"key": {
-		"O": {"type": "forge:ore_dict", "ore": "obsidian"},
-		"E": {"type": "forge:ore_dict", "ore": "enderpearl"},
+		"E": {"item": "minecraft:ender_eye"},
 		"D": {"type": "forge:ore_dict", "ore": "gemDiamond"},
-		"N": {"type": "forge:ore_dict", "ore": "netherStar"}
+		"B": {"item": "minecraft:beacon"}
 	}
 }
