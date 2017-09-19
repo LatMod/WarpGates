@@ -1,10 +1,10 @@
 package com.latmod.warp_gates.net;
 
+import com.feed_the_beast.ftbl.lib.io.DataIn;
+import com.feed_the_beast.ftbl.lib.io.DataOut;
 import com.feed_the_beast.ftbl.lib.net.MessageToServer;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
-import com.feed_the_beast.ftbl.lib.util.NetUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -32,15 +32,15 @@ public class MessageToggleActive extends MessageToServer<MessageToggleActive>
 	}
 
 	@Override
-	public void toBytes(ByteBuf io)
+	public void writeData(DataOut data)
 	{
-		NetUtils.writePos(io, pos);
+		data.writePos(pos);
 	}
 
 	@Override
-	public void fromBytes(ByteBuf io)
+	public void readData(DataIn data)
 	{
-		pos = NetUtils.readPos(io);
+		pos = data.readPos();
 	}
 
 	@Override

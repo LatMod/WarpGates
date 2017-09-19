@@ -1,13 +1,13 @@
 package com.latmod.warp_gates.net;
 
+import com.feed_the_beast.ftbl.lib.io.DataIn;
+import com.feed_the_beast.ftbl.lib.io.DataOut;
 import com.feed_the_beast.ftbl.lib.math.BlockDimPos;
 import com.feed_the_beast.ftbl.lib.net.MessageToServer;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
-import com.feed_the_beast.ftbl.lib.util.NetUtils;
 import com.feed_the_beast.ftbl.lib.util.ServerUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.block.WarpGateNet;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
@@ -40,17 +40,17 @@ public class MessageSelectTeleporter extends MessageToServer<MessageSelectTelepo
 	}
 
 	@Override
-	public void toBytes(ByteBuf io)
+	public void writeData(DataOut data)
 	{
-		NetUtils.writePos(io, pos);
-		NetUtils.writeDimPos(io, dst);
+		data.writePos(pos);
+		data.writeDimPos(dst);
 	}
 
 	@Override
-	public void fromBytes(ByteBuf io)
+	public void readData(DataIn data)
 	{
-		pos = NetUtils.readPos(io);
-		dst = NetUtils.readDimPos(io);
+		pos = data.readPos();
+		dst = data.readDimPos();
 	}
 
 	@Override

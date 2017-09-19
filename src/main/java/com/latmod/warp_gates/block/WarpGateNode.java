@@ -1,35 +1,36 @@
 package com.latmod.warp_gates.block;
 
+import com.feed_the_beast.ftbl.lib.io.DataIn;
+import com.feed_the_beast.ftbl.lib.io.DataOut;
 import com.feed_the_beast.ftbl.lib.math.BlockDimPos;
-import com.feed_the_beast.ftbl.lib.util.NetUtils;
-import io.netty.buffer.ByteBuf;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 /**
  * @author LatvianModder
  */
 public class WarpGateNode
 {
+	public static final DataOut.Serializer<WarpGateNode> SERIALIZER = (data, node) ->
+	{
+		data.writeDimPos(node.pos);
+		data.writeString(node.name);
+		data.writeInt(node.energy);
+		data.writeBoolean(node.available);
+	};
+
+	public static final DataIn.Deserializer<WarpGateNode> DESERIALIZER = data ->
+	{
+		WarpGateNode node = new WarpGateNode();
+		node.pos = data.readDimPos();
+		node.name = data.readString();
+		node.energy = data.readInt();
+		node.available = data.readBoolean();
+		return node;
+	};
+
 	public BlockDimPos pos;
 	public String name;
 	public int energy;
 	public boolean available;
-
-	public void write(ByteBuf io)
-	{
-		NetUtils.writeDimPos(io, pos);
-		ByteBufUtils.writeUTF8String(io, name);
-		io.writeInt(energy);
-		io.writeBoolean(available);
-	}
-
-	public void read(ByteBuf io)
-	{
-		pos = NetUtils.readDimPos(io);
-		name = ByteBufUtils.readUTF8String(io);
-		energy = io.readInt();
-		available = io.readBoolean();
-	}
 
 	public int hashCode()
 	{

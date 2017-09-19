@@ -1,14 +1,13 @@
 package com.latmod.warp_gates.net;
 
+import com.feed_the_beast.ftbl.lib.io.DataIn;
+import com.feed_the_beast.ftbl.lib.io.DataOut;
 import com.feed_the_beast.ftbl.lib.net.MessageToServer;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
-import com.feed_the_beast.ftbl.lib.util.NetUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 /**
  * @author LatvianModder
@@ -35,17 +34,17 @@ public class MessageSetName extends MessageToServer<MessageSetName>
 	}
 
 	@Override
-	public void toBytes(ByteBuf io)
+	public void writeData(DataOut data)
 	{
-		NetUtils.writePos(io, pos);
-		ByteBufUtils.writeUTF8String(io, name);
+		data.writePos(pos);
+		data.writeString(name);
 	}
 
 	@Override
-	public void fromBytes(ByteBuf io)
+	public void readData(DataIn data)
 	{
-		pos = NetUtils.readPos(io);
-		name = ByteBufUtils.readUTF8String(io);
+		pos = data.readPos();
+		name = data.readString();
 	}
 
 	@Override

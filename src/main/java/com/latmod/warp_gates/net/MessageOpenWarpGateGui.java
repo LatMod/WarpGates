@@ -1,17 +1,16 @@
 package com.latmod.warp_gates.net;
 
+import com.feed_the_beast.ftbl.lib.io.DataIn;
+import com.feed_the_beast.ftbl.lib.io.DataOut;
 import com.feed_the_beast.ftbl.lib.net.MessageToClient;
 import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
-import com.feed_the_beast.ftbl.lib.util.NetUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.block.WarpGateNode;
 import com.latmod.warp_gates.client.GuiWarpGate;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,30 +38,17 @@ public class MessageOpenWarpGateGui extends MessageToClient<MessageOpenWarpGateG
 	}
 
 	@Override
-	public void toBytes(ByteBuf io)
+	public void writeData(DataOut data)
 	{
-		NetUtils.writePos(io, pos);
-		io.writeInt(nodes.size());
-
-		for (WarpGateNode t : nodes)
-		{
-			t.write(io);
-		}
+		data.writePos(pos);
+		data.writeCollection(nodes, WarpGateNode.SERIALIZER);
 	}
 
 	@Override
-	public void fromBytes(ByteBuf io)
+	public void readData(DataIn data)
 	{
-		pos = NetUtils.readPos(io);
-		int s = io.readInt();
-		nodes = new ArrayList<>();
-
-		for (int i = 0; i < s; i++)
-		{
-			WarpGateNode n = new WarpGateNode();
-			n.read(io);
-			nodes.add(n);
-		}
+		pos = data.readPos();
+		data.readCollection(nodes, WarpGateNode.DESERIALIZER);
 	}
 
 	@Override
