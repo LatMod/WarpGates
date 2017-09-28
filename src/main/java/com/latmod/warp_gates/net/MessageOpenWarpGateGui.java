@@ -58,7 +58,7 @@ public class MessageOpenWarpGateGui extends MessageToClient<MessageOpenWarpGateG
 
 		if (te instanceof TileWarpGate)
 		{
-			new GuiWarpGate((TileWarpGate) te, m.nodes).openGui();
+			new GuiWarpGate((TileWarpGate) te, m.nodes).openGuiLater();
 		}
 	}
 }
