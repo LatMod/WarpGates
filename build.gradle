@@ -24,7 +24,7 @@ minecraft {
 	mappings = "${mappings_version}"
 
 	replace "@VERSION@", project.version
-	replaceIn "WarpGates.java"
+	replaceIn "${mod_reference}"
 }
 
 repositories {

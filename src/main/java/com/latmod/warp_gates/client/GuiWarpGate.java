@@ -1,8 +1,5 @@
 package com.latmod.warp_gates.client;
 
-import com.feed_the_beast.ftbl.lib.Color4I;
-import com.feed_the_beast.ftbl.lib.EnumPrivacyLevel;
-import com.feed_the_beast.ftbl.lib.MouseButton;
 import com.feed_the_beast.ftbl.lib.gui.Button;
 import com.feed_the_beast.ftbl.lib.gui.GuiBase;
 import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
@@ -11,6 +8,9 @@ import com.feed_the_beast.ftbl.lib.gui.GuiLang;
 import com.feed_the_beast.ftbl.lib.gui.Slider;
 import com.feed_the_beast.ftbl.lib.gui.TextBox;
 import com.feed_the_beast.ftbl.lib.icon.Icon;
+import com.feed_the_beast.ftbl.lib.util.misc.Color4I;
+import com.feed_the_beast.ftbl.lib.util.misc.EnumPrivacyLevel;
+import com.feed_the_beast.ftbl.lib.util.misc.MouseButton;
 import com.latmod.warp_gates.WarpGates;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.block.WarpGateNode;

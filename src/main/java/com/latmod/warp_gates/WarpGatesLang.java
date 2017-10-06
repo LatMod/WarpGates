@@ -1,6 +1,6 @@
 package com.latmod.warp_gates;
 
-import com.feed_the_beast.ftbl.lib.LangKey;
+import com.feed_the_beast.ftbl.lib.util.LangKey;
 
 /**
  * @author LatvianModder
