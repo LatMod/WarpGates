@@ -5,10 +5,10 @@ import com.feed_the_beast.ftbl.lib.gui.GuiBase;
 import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
 import com.feed_the_beast.ftbl.lib.gui.GuiIcons;
 import com.feed_the_beast.ftbl.lib.gui.GuiLang;
-import com.feed_the_beast.ftbl.lib.gui.Slider;
+import com.feed_the_beast.ftbl.lib.gui.ScrollBar;
 import com.feed_the_beast.ftbl.lib.gui.TextBox;
+import com.feed_the_beast.ftbl.lib.icon.Color4I;
 import com.feed_the_beast.ftbl.lib.icon.Icon;
-import com.feed_the_beast.ftbl.lib.util.misc.Color4I;
 import com.feed_the_beast.ftbl.lib.util.misc.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.lib.util.misc.MouseButton;
 import com.latmod.warp_gates.WarpGates;
@@ -43,14 +43,14 @@ public class GuiWarpGate extends GuiBase
 	{
 		private final WarpGateNode node;
 
-		private ButtonXPT(WarpGateNode n)
+		private ButtonXPT(GuiBase gui, WarpGateNode n)
 		{
-			super(6, 0, 104, 11);
+			super(gui, 6, 0, 104, 11);
 			node = n;
 		}
 
 		@Override
-		public void onClicked(GuiBase gui, MouseButton button)
+		public void onClicked(MouseButton button)
 		{
 			GuiHelper.playClickSound();
 
@@ -62,17 +62,17 @@ public class GuiWarpGate extends GuiBase
 		}
 
 		@Override
-		public void renderWidget(GuiBase gui)
+		public void renderWidget()
 		{
 			int ax = getAX();
 			int ay = getAY();
-			BAR_H.draw(ax, ay + height, 104, 1, Color4I.NONE);
-			(node.available ? AVAILABLE_ON : AVAILABLE_OFF).draw(ax, ay + 2, 7, 7, Color4I.NONE);
-			getFont().drawString(node.name, ax + 10, ay + 2, 0xFFFFFFFF, false);
+			BAR_H.draw(ax, ay + height, 104, 1);
+			(node.available ? AVAILABLE_ON : AVAILABLE_OFF).draw(ax, ay + 2, 7, 7);
+			drawString(node.name, ax + 10, ay + 2);
 
 			String lvls = Integer.toString(node.energy);
 
-			getFont().drawString(lvls, ax + width - getFont().getStringWidth(lvls) - 2, ay + 2, node.available ? 0xFF56FF47 : 0xFFFF4646, false);
+			drawString(lvls, ax + width - getStringWidth(lvls) - 2, ay + 2, Color4I.rgb(node.available ? 0x56FF47 : 0xFF4646), 0);
 			GlStateManager.color(1F, 1F, 1F, 1F);
 		}
 	}
@@ -80,7 +80,7 @@ public class GuiWarpGate extends GuiBase
 	private final TileWarpGate teleporter;
 	private final Button buttonPrivacy, buttonToggle;
 	private final List<ButtonXPT> buttons;
-	private final Slider slider;
+	private final ScrollBar scrollBar;
 	private final TextBox textBox;
 
 	public GuiWarpGate(TileWarpGate te, List<WarpGateNode> t)
@@ -91,67 +91,65 @@ public class GuiWarpGate extends GuiBase
 
 		for (WarpGateNode n : t)
 		{
-			buttons.add(new ButtonXPT(n));
+			buttons.add(new ButtonXPT(this, n));
 		}
 
-		buttonPrivacy = new Button(105, 5, 16, 16, EnumPrivacyLevel.ENUM_LANG_KEY.translate())
+		buttonPrivacy = new Button(this, 105, 5, 16, 16, EnumPrivacyLevel.ENUM_LANG_KEY.translate())
 		{
 			@Override
-			public void onClicked(GuiBase gui, MouseButton button)
+			public void onClicked(MouseButton button)
 			{
 				GuiHelper.playClickSound();
 				new MessageTogglePrivacy(teleporter.getPos(), button.isLeft()).sendToServer();
 			}
 
 			@Override
-			public Icon getIcon(GuiBase gui)
+			public Icon getIcon()
 			{
 				return teleporter.privacyLevel.getIcon();
 			}
 		};
 
-		buttonToggle = new Button(87, 5, 16, 16)
+		buttonToggle = new Button(this, 87, 5, 16, 16)
 		{
 			@Override
-			public void onClicked(GuiBase gui, MouseButton button)
+			public void onClicked(MouseButton button)
 			{
 				GuiHelper.playClickSound();
 				new MessageToggleActive(teleporter.getPos()).sendToServer();
 			}
 
 			@Override
-			public String getTitle(GuiBase gui)
+			public String getTitle()
 			{
 				return (teleporter.active ? GuiLang.ENABLED : GuiLang.DISABLED).translate();
 			}
 
 			@Override
-			public Icon getIcon(GuiBase gui)
+			public Icon getIcon()
 			{
 				return teleporter.active ? GuiIcons.ACCEPT : GuiIcons.ACCEPT_GRAY;
 			}
 		};
 
-		slider = new Slider(114, 23, 6, 81, 10)
+		scrollBar = new ScrollBar(this, 114, 23, 6, 81, 10)
 		{
 			@Override
-			public void onMoved(GuiBase gui)
+			public void onMoved()
 			{
 			}
 		};
 
-		slider.slider = SLIDER_TEX;
-
-		textBox = new TextBox(6, 6, 78, 14)
+		textBox = new TextBox(this, 6, 6, 78, 14)
 		{
 			@Override
-			public void onEnterPressed(GuiBase gui)
+			public void onEnterPressed()
 			{
 				new MessageSetName(teleporter.getPos(), getText()).sendToServer();
 			}
 		};
 
-		textBox.writeText(this, teleporter.getName());
+		textBox.writeText(teleporter.getName());
 		textBox.charLimit = 20;
 
 		//width = 220D;
@@ -173,7 +171,7 @@ public class GuiWarpGate extends GuiBase
 	@Override
 	public void addWidgets()
 	{
-		add(slider);
+		add(scrollBar);
 		add(buttonPrivacy);
 		add(buttonToggle);
 		addAll(buttons);
@@ -181,13 +179,13 @@ public class GuiWarpGate extends GuiBase
 	}
 
 	@Override
-	public boolean isEnabled(GuiBase gui)
+	public boolean isEnabled()
 	{
 		return !teleporter.isInvalid();
 	}
 
 	@Override
-	public Icon getIcon(GuiBase gui)
+	public Icon getIcon()
 	{
 		return BACKGROUND;
 	}
