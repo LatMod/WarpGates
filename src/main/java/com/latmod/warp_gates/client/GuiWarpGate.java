@@ -94,7 +94,7 @@ public class GuiWarpGate extends GuiBase
 			buttons.add(new ButtonXPT(this, n));
 		}
 
-		buttonPrivacy = new Button(this, 105, 5, 16, 16, EnumPrivacyLevel.ENUM_LANG_KEY.translate())
+		buttonPrivacy = new Button(this, 105, 5, 16, 16, EnumPrivacyLevel.ENUM_LANG_KEY.translate(), GuiIcons.SECURITY_PUBLIC)
 		{
 			@Override
 			public void onClicked(MouseButton button)
