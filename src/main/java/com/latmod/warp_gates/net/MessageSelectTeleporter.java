@@ -9,7 +9,6 @@ import com.feed_the_beast.ftbl.lib.util.ServerUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.block.WarpGateNet;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
@@ -70,7 +69,7 @@ public class MessageSelectTeleporter extends MessageToServer<MessageSelectTelepo
 				if (teleporter0.consumeEnergy(player, levels, true))
 				{
 					teleporter0.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1F, 1F);
-					ServerUtils.teleportPlayer((EntityPlayerMP) player, teleporter.getDimPos());
+					ServerUtils.teleportEntity(player, teleporter.getDimPos());
 					teleporter0.consumeEnergy(player, levels, false);
 					teleporter.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.BLOCKS, 1F, 1F);
 				}
