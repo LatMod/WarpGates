@@ -1,6 +1,6 @@
 package com.latmod.warp_gates.block;
 
-import com.feed_the_beast.ftbl.lib.block.BlockBase;
+import com.feed_the_beast.ftblib.lib.block.BlockBase;
 import com.latmod.warp_gates.WarpGates;
 import com.latmod.warp_gates.net.MessageOpenWarpGateGui;
 import net.minecraft.block.BlockHorizontal;

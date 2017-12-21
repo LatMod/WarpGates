@@ -1,7 +1,7 @@
 package com.latmod.warp_gates.client;
 
-import com.feed_the_beast.ftbl.lib.client.ClientUtils;
-import com.feed_the_beast.ftbl.lib.math.MathUtils;
+import com.feed_the_beast.ftblib.lib.client.ClientUtils;
+import com.feed_the_beast.ftblib.lib.math.MathUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -22,7 +22,7 @@ public class RenderWarpGate extends TileEntitySpecialRenderer<TileWarpGate>
 			return;
 		}
 
-		double distanceSq = te.getDistanceSq(ClientUtils.playerX, ClientUtils.playerY + 1D, ClientUtils.playerZ);
+		double distanceSq = te.getDistanceSq(ClientUtils.getPlayerX(), ClientUtils.getPlayerY() + 1D, ClientUtils.getPlayerZ());
 		double a = getAlpha(distanceSq);
 
 		if (a <= 0.01D)
@@ -45,7 +45,7 @@ public class RenderWarpGate extends TileEntitySpecialRenderer<TileWarpGate>
 		GlStateManager.enableTexture2D();
 		float f1 = 0.02F;
 
-		double rot = -MathHelper.atan2((te.getPos().getZ() + 0.5F) - ClientUtils.playerZ, (te.getPos().getX() + 0.5F) - ClientUtils.playerX) * MathUtils.DEG + 90D;
+		double rot = -MathHelper.atan2((te.getPos().getZ() + 0.5F) - ClientUtils.getPlayerZ(), (te.getPos().getX() + 0.5F) - ClientUtils.getPlayerX()) * MathUtils.DEG + 90D;
 		GlStateManager.rotate((float) rot, 0F, 1F, 0F);
 		GlStateManager.scale(-f1, -f1, f1);
 

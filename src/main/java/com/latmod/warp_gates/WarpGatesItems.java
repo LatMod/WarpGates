@@ -1,7 +1,7 @@
 package com.latmod.warp_gates;
 
-import com.feed_the_beast.ftbl.lib.block.ItemBlockBase;
-import com.feed_the_beast.ftbl.lib.client.ClientUtils;
+import com.feed_the_beast.ftblib.lib.block.ItemBlockBase;
+import com.feed_the_beast.ftblib.lib.client.ClientUtils;
 import com.latmod.warp_gates.block.BlockWarpGate;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.client.RenderWarpGate;

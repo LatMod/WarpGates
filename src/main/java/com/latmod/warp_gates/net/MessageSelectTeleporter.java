@@ -1,11 +1,11 @@
 package com.latmod.warp_gates.net;
 
-import com.feed_the_beast.ftbl.lib.io.DataIn;
-import com.feed_the_beast.ftbl.lib.io.DataOut;
-import com.feed_the_beast.ftbl.lib.math.BlockDimPos;
-import com.feed_the_beast.ftbl.lib.net.MessageToServer;
-import com.feed_the_beast.ftbl.lib.net.NetworkWrapper;
-import com.feed_the_beast.ftbl.lib.util.ServerUtils;
+import com.feed_the_beast.ftblib.lib.io.DataIn;
+import com.feed_the_beast.ftblib.lib.io.DataOut;
+import com.feed_the_beast.ftblib.lib.math.BlockDimPos;
+import com.feed_the_beast.ftblib.lib.net.MessageToServer;
+import com.feed_the_beast.ftblib.lib.net.NetworkWrapper;
+import com.feed_the_beast.ftblib.lib.util.ServerUtils;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.block.WarpGateNet;
 import net.minecraft.entity.player.EntityPlayer;

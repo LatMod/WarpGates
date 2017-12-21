@@ -1,9 +1,9 @@
 package com.latmod.warp_gates.block;
 
-import com.feed_the_beast.ftbl.lib.math.MathUtils;
-import com.feed_the_beast.ftbl.lib.tile.EnumSaveType;
-import com.feed_the_beast.ftbl.lib.tile.TileBase;
-import com.feed_the_beast.ftbl.lib.util.misc.EnumPrivacyLevel;
+import com.feed_the_beast.ftblib.lib.math.MathUtils;
+import com.feed_the_beast.ftblib.lib.tile.EnumSaveType;
+import com.feed_the_beast.ftblib.lib.tile.TileBase;
+import com.feed_the_beast.ftblib.lib.util.misc.EnumPrivacyLevel;
 import com.latmod.warp_gates.WarpGatesConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;

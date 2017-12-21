@@ -1,16 +1,16 @@
 package com.latmod.warp_gates.client;
 
-import com.feed_the_beast.ftbl.lib.gui.Button;
-import com.feed_the_beast.ftbl.lib.gui.GuiBase;
-import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
-import com.feed_the_beast.ftbl.lib.gui.GuiIcons;
-import com.feed_the_beast.ftbl.lib.gui.GuiLang;
-import com.feed_the_beast.ftbl.lib.gui.ScrollBar;
-import com.feed_the_beast.ftbl.lib.gui.TextBox;
-import com.feed_the_beast.ftbl.lib.icon.Color4I;
-import com.feed_the_beast.ftbl.lib.icon.Icon;
-import com.feed_the_beast.ftbl.lib.util.misc.EnumPrivacyLevel;
-import com.feed_the_beast.ftbl.lib.util.misc.MouseButton;
+import com.feed_the_beast.ftblib.lib.gui.Button;
+import com.feed_the_beast.ftblib.lib.gui.GuiBase;
+import com.feed_the_beast.ftblib.lib.gui.GuiHelper;
+import com.feed_the_beast.ftblib.lib.gui.GuiIcons;
+import com.feed_the_beast.ftblib.lib.gui.GuiLang;
+import com.feed_the_beast.ftblib.lib.gui.ScrollBar;
+import com.feed_the_beast.ftblib.lib.gui.TextBox;
+import com.feed_the_beast.ftblib.lib.icon.Color4I;
+import com.feed_the_beast.ftblib.lib.icon.Icon;
+import com.feed_the_beast.ftblib.lib.util.misc.EnumPrivacyLevel;
+import com.feed_the_beast.ftblib.lib.util.misc.MouseButton;
 import com.latmod.warp_gates.WarpGates;
 import com.latmod.warp_gates.block.TileWarpGate;
 import com.latmod.warp_gates.block.WarpGateNode;

@@ -1,14 +1,14 @@
 package com.latmod.warp_gates.block;
 
-import com.feed_the_beast.ftbl.api.FTBLibAPI;
-import com.feed_the_beast.ftbl.api.IForgePlayer;
-import com.feed_the_beast.ftbl.api.IUniverse;
-import com.feed_the_beast.ftbl.lib.math.BlockDimPos;
+import com.feed_the_beast.ftblib.lib.data.ForgePlayer;
+import com.feed_the_beast.ftblib.lib.data.Universe;
+import com.feed_the_beast.ftblib.lib.math.BlockDimPos;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -51,21 +51,19 @@ public class WarpGateNet
 
 	public static Collection<TileWarpGate> getGates(EntityPlayerMP player)
 	{
-		IUniverse world = FTBLibAPI.API.getUniverse();
-
-		IForgePlayer p = world.getPlayer(player);
-		List<TileWarpGate> list = new ArrayList<>();
-
-		if (p == null || NET.isEmpty())
+		if (NET.isEmpty())
 		{
-			return list;
+			return Collections.emptyList();
 		}
+
+		ForgePlayer p = Universe.get().getPlayer(player);
+		List<TileWarpGate> list = new ArrayList<>();
 
 		for (TileWarpGate gate : NET.values())
 		{
 			if (gate.getOwner() != null && gate.hasWorld() && !gate.isInvalid())
 			{
-				IForgePlayer owner = world.getPlayer(gate.getOwner());
+				ForgePlayer owner = Universe.get().getPlayer(gate.getOwner());
 
 				if (owner != null)
 				{

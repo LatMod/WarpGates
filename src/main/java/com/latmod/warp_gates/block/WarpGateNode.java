@@ -1,8 +1,8 @@
 package com.latmod.warp_gates.block;
 
-import com.feed_the_beast.ftbl.lib.io.DataIn;
-import com.feed_the_beast.ftbl.lib.io.DataOut;
-import com.feed_the_beast.ftbl.lib.math.BlockDimPos;
+import com.feed_the_beast.ftblib.lib.io.DataIn;
+import com.feed_the_beast.ftblib.lib.io.DataOut;
+import com.feed_the_beast.ftblib.lib.math.BlockDimPos;
 
 /**
  * @author LatvianModder
