@@ -9,6 +9,7 @@ import com.feed_the_beast.ftblib.lib.gui.ScrollBar;
 import com.feed_the_beast.ftblib.lib.gui.TextBox;
 import com.feed_the_beast.ftblib.lib.icon.Color4I;
 import com.feed_the_beast.ftblib.lib.icon.Icon;
+import com.feed_the_beast.ftblib.lib.icon.ImageIcon;
 import com.feed_the_beast.ftblib.lib.util.misc.EnumPrivacyLevel;
 import com.feed_the_beast.ftblib.lib.util.misc.MouseButton;
 import com.latmod.warp_gates.WarpGates;
@@ -31,7 +32,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiWarpGate extends GuiBase
 {
-	private static final Icon TEXTURE = Icon.getIcon(WarpGates.MOD_ID + ":textures/gui/warp_gate.png");
+	private static final ImageIcon TEXTURE = (ImageIcon) Icon.getIcon(WarpGates.MOD_ID + ":textures/gui/warp_gate.png");
 	private static final Icon BACKGROUND = TEXTURE.withUVfromCoords(0, 0, 126, 110, 128, 128);
 	private static final Icon SLIDER_TEX = TEXTURE.withUVfromCoords(0, 110, 6, 10, 128, 128);
 	private static final Icon AVAILABLE_ON = TEXTURE.withUVfromCoords(6, 110, 7, 7, 128, 128);
@@ -62,7 +63,7 @@ public class GuiWarpGate extends GuiBase
 		}
 
 		@Override
-		public void renderWidget()
+		public void draw()
 		{
 			int ax = getAX();
 			int ay = getAY();
@@ -157,15 +158,18 @@ public class GuiWarpGate extends GuiBase
 	}
 
 	@Override
-	public void onInit()
+	public boolean onInit()
 	{
 		int y = 23;
 
+		//FIXME
 		for (ButtonXPT b : buttons)
 		{
 			b.posY = y;
-			y += b.height + 1D;
+			y += b.height + 1;
 		}
+
+		return true;
 	}
 
 	@Override
